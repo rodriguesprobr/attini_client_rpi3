@@ -41,9 +41,9 @@ def get_random_int(value_min, value_max):
     return random_int
     
 def get_random_float(value_min, value_max):
-    random_float = random.random(value_min, value_max)
-    log("Random float generated from {0} - {1}: {2}".format(str(value_min), str(value_max), str(random_int)), "attini/util.py", level = "debug")
-    return random_int
+    random_float = random.uniform(value_min, value_max)
+    log("Random float generated from {0} - {1}: {2}".format(str(value_min), str(value_max), str(random_float)), "attini/util.py", level = "debug")
+    return random_float
     
 def get_random_record(recordsets):
     return random.choice(recordsets)
