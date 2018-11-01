@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 from attini import gpio
+from attini import transmission
 from attini import util
 import sys
 if __name__ == '__main__':
@@ -46,7 +47,7 @@ if __name__ == '__main__':
                     gpio.blink(util.get_config("red_led_port"), 10, 0.125)
                     gpio.light(util.get_config("green_led_port"), 1)
                 
-                send_status = gpio.send(
+                send_status = transmission.send(
                     air_humidity,
                     air_temperature,
                     soil_moisture,
