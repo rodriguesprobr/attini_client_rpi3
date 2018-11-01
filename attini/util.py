@@ -49,7 +49,7 @@ def get_random_record(recordsets):
     return random.choice(recordsets)
     
 def sleep(value_min = 1, value_max = 1):
-    value_random = get_random_int(value_min, value_max) if int(value_min) and int(value_max) else get_random_float(value_min, value_max)
+    value_random = get_random_int(value_min, value_max) if isinstance(value_min, int) and isinstance(value_max, int) else get_random_float(value_min, value_max)
     if get_config("debug") == True:
         for seconds in range(0,value_random):
             log("{0}s".format(seconds), "attini/util.py", level = "debug")
