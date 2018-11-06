@@ -34,7 +34,6 @@ sudo /usr/bin/python3 /opt/attini/client/test-sensors.py
 sudo /usr/bin/python3 /opt/attini/client/test-connection.py
 ```
 
-```
 Also, you may be able to schedule the client at the boot using cron capabilites, as mentioned above:
 ```
 @reboot sudo /usr/bin/python3 /opt/attini/client/attini.py start
