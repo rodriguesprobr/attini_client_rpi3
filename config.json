@@ -1,7 +1,7 @@
 {
-    "log_enabled" : 1,
-    "debug" : 1,
-    "server_ip" : "192.168.25.2",
+    "log_enabled" : 0,
+    "debug" : 0,
+    "server_ip" : "0.0.0.0",
     "server_port" : 8888,
     "red_led_port" : 27,
     "green_led_port" : 23,
