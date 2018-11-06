@@ -29,15 +29,15 @@ sudo -H pip3 install /opt/attini/client
 
 You can test some parts of attini system with the follwing scripts:
 ```
-/usr/bin/python3 /opt/attini/client/test-lights.py
-/usr/bin/python3 /opt/attini/client/test-sensors.py
-/usr/bin/python3 /opt/attini/client/test-connection.py
+sudo /usr/bin/python3 /opt/attini/client/test-lights.py
+sudo /usr/bin/python3 /opt/attini/client/test-sensors.py
+sudo /usr/bin/python3 /opt/attini/client/test-connection.py
 ```
 
 ```
 Also, you may be able to schedule the client at the boot using cron capabilites, as mentioned above:
 ```
-@reboot /usr/bin/python3 /opt/attini/client/attini.py start
+@reboot sudo /usr/bin/python3 /opt/attini/client/attini.py start
 ```
 
 ## Troubleshootings
