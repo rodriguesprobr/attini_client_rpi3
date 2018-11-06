@@ -12,7 +12,7 @@
 
 ### Requirements
 + Raspberry Pi 3 
-+ Updated Raspbian distro with a seeting wi-fi and SSH access
++ Updated Raspbian distro with a set-up wi-fi and SSH access
 
 ### Clean installation Recipe
 
