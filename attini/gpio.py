@@ -1,13 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
-# Dúvidas sobre o funcionamento das Portas da GPIO: http://raspi.tv/2013/rpi-gpio-basics-4-setting-up-rpi-gpio-numbering-systems-and-inputs
-# Dúvidas sobre os nomes de cada porta: https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
-# Atenção: O padrão adtoado é o nome da GPIO.
 from attini import util
 
 import Adafruit_DHT
 import base64
-import os
 import pygame
 import pygame.camera
 import RPi.GPIO as GPIO
@@ -60,11 +56,9 @@ def read(sensor_type, port):
             cam.start()
             photo_bin = cam.get_image()
             img_path = "{0}/temp.jpg".format(util.get_config("photo_temp_path"))
-            if not os.path.isfile(img_path):
-                os.remove(img_path)
             pygame.image.save(photo_bin, img_path)
             cam.stop()
-            with open("temp.jpg", "rb") as photo_file:
+            with open(img_path, "rb") as photo_file:
                 photo_bin_64 = base64.b64encode(photo_file.read())
             return photo_bin_64
         except Exception as e:
