@@ -7,6 +7,7 @@ from attini import util
 
 import Adafruit_DHT
 import base64
+import os
 import pygame
 import pygame.camera
 import RPi.GPIO as GPIO
@@ -58,7 +59,10 @@ def read(sensor_type, port):
             cam = pygame.camera.Camera("/dev/video0",(640,480))
             cam.start()
             photo_bin = cam.get_image()
-            pygame.image.save(photo_bin,"{0}/temp.jpg".format(util.get_config("photo_temp_path")))
+            img_path = "{0}/temp.jpg".format(util.get_config("photo_temp_path"))
+            if not os.path.exists(img_path):
+                os.remove(img_path)
+            pygame.image.save(photo_bin, imgpath)
             cam.stop()
             with open("temp.jpg", "rb") as photo_file:
                 photo_bin_64 = base64.b64encode(photo_file.read())
