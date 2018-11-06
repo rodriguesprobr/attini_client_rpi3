@@ -1,11 +1,12 @@
 {
     "log_enabled" : 1,
     "debug" : 1,
-    "server_ip" : "200.145.54.28",
+    "server_ip" : "192.168.25.2",
     "server_port" : 8888,
     "red_led_port" : 27,
     "green_led_port" : 23,
     "blue_led_port" : 17,
-    "sensor_air_temp_humidity_port" : 22,
-    "sensor_soil_moisture_port" : 4
+    "sensor_air_temp_humidity_port" : 21,
+    "sensor_soil_moisture_port" : 4,
+    "photo_temp_path" : "/opt/attini/client"
 }

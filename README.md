@@ -17,11 +17,11 @@
 We suggest to use /opt/attini as default path installation.
 This is the 101 recipe to a clean installation on RPi3/Raspbian:
 ```
-sudo apt-get install git python3-pip libsdl1.2-dev -y
+sudo apt-get install git python3-pip libsdl1.2-dev libsdl-image1.2 -y
 cd ~/
 git clone https://github.com/rodriguesprobr/attini_client_rpi3.git
 sudo mkdir -p /opt/attini
-sudo chown pi:pi /opt/attini
+sudo chown pi:pi /opt/attini 
 mv attini_client_rpi3 /opt/attini/client
 sudo -H pip3 install /opt/attini/client
 ```
@@ -29,3 +29,9 @@ Also, you may be able to schedule the client at the boot using cron capabilites,
 ```
 @reboot /usr/bin/python3 /opt/attini/client/attini.py start
 ```
+
+## Troubleshootings
+
+### Timelapse
+
+- Be sure that image and video path are writable. You may also setting the paths to those dirs in config.json file.

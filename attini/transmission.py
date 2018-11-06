@@ -31,13 +31,15 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
             try:
                 result = int(response.text)
             except:
-                result = -1
+                result = -10
         else:
             util.log("Error sending data to server.", "attini/transmission.py")
         return result
     except requests.exceptions.ReadTimeout:
         util.log("Error sending data to server. Connection timeout.", "attini/transmission.py")
+        result = -20
         return result
     except (requests.exceptions.ConnectionError):
+        result = -30
         util.log("Error sending data to server. Connection error.", "attini/transmission.py")
         return result

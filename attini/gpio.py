@@ -58,12 +58,13 @@ def read(sensor_type, port):
             cam = pygame.camera.Camera("/dev/video0",(640,480))
             cam.start()
             photo_bin = cam.get_image()
-            pygame.image.save(photo_bin,"temp.jpg")
+            pygame.image.save(photo_bin,"{0}/temp.jpg".format(util.get_config("photo_temp_path")))
             cam.stop()
             with open("temp.jpg", "rb") as photo_file:
                 photo_bin_64 = base64.b64encode(photo_file.read())
             return photo_bin_64
-        except:
+        except Exception as e:
+            util.log("attini/gpio.py error: {0}".format(str(e)))
             return False
     else:
         return False
