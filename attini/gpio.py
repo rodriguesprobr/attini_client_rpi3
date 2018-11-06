@@ -60,9 +60,9 @@ def read(sensor_type, port):
             cam.start()
             photo_bin = cam.get_image()
             img_path = "{0}/temp.jpg".format(util.get_config("photo_temp_path"))
-            if not os.path.exists(img_path):
+            if not os.path.isfile(img_path):
                 os.remove(img_path)
-            pygame.image.save(photo_bin, imgpath)
+            pygame.image.save(photo_bin, img_path)
             cam.stop()
             with open("temp.jpg", "rb") as photo_file:
                 photo_bin_64 = base64.b64encode(photo_file.read())
