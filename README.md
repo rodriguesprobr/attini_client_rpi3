@@ -19,13 +19,21 @@
 We suggest to use /opt/attini as default path installation.
 This is the 101 recipe to a clean installation on RPi3/Raspbian:
 ```
-sudo apt-get install git python3-pip libsdl1.2-dev libsdl-image1.2 -y
+sudo apt-get install git python3-pip python3-dev libsdl1.2-dev libsdl-image1.2 -y
 cd ~/
 git clone https://github.com/rodriguesprobr/attini_client_rpi3.git
 sudo mkdir -p /opt/attini
 sudo chown pi:pi /opt/attini 
 mv attini_client_rpi3 /opt/attini/client
 sudo -H pip3 install /opt/attini/client
+
+You can test some parts of attini system with the follwing scripts:
+```
+/usr/bin/python3 /opt/attini/client/test-lights.py
+/usr/bin/python3 /opt/attini/client/test-sensors.py
+/usr/bin/python3 /opt/attini/client/test-connection.py
+```
+
 ```
 Also, you may be able to schedule the client at the boot using cron capabilites, as mentioned above:
 ```
