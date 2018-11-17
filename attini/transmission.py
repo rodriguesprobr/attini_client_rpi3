@@ -11,9 +11,6 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
     ), "attini/transmission.py")
     result = 0
     try:
-        #files = {
-        #    "photo_bin" : ("0" if photo_bin == False else photo_bin)
-        #}
         response = requests.post(\
             "http://" + util.get_config('server_ip') + ":" + str(util.get_config('server_port')),\
             data = json.dumps({
@@ -36,15 +33,13 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
                 result = json.loads('{' + response.text.split('{', 1)[1])
                 util.log("Received data: {0}".format(str(result)), "attini/transmission.py")
             except:
-                result = "{\"code\":\"-99\", \"message\":\"Error parsing the data received from attini server. Data: {0}\"}".format(str(response.text))
+                result = "{\"code\":\"-12\", \"message\":\"Error parsing the data received from attini server. Data: {0}\"}".format(str(response.text))
         else:
             util.log("Error sending data to server.", "attini/transmission.py")
         return result
     except requests.exceptions.ReadTimeout:
         util.log("Error sending data to server. Connection timeout.", "attini/transmission.py")
-        result = -20
-        return result
+        return "{\"code\":\"-11\", \"message\":\"Error sending data to server. Connection timeout.\"}"
     except (requests.exceptions.ConnectionError):
-        result = -30
         util.log("Error sending data to server. Connection error.", "attini/transmission.py")
-        return result
+        return "{\"code\":\"-10\", \"message\":\"Error sending data to server. Connection error.\"}"
