@@ -21,7 +21,7 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
                 "air_humidity" : air_humidity,\
                 "air_temperature" : air_temperature,\
                 "soil_moisture" : soil_moisture,\
-                "photo_bin" : photo_bin\
+                "photo_bin" : "0" if photo_bin == 0 else photo_bin.decode('utf-8')\
             }),\
             headers = {\
                 "content-type" : "application/json"\
