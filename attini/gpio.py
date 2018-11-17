@@ -22,17 +22,17 @@ def light(port, status):
     else:
         GPIO.output(port, 0)
         
-def get_rpiid():
-    rpiid = "0000000000000000"
+def get_id():
+    id = "0000000000000000"
     try:
         f = open('/proc/cpuinfo','r')
         for l in f:
             if l[0:6]=='Serial':
-                rpiid = l[10:26]
+                id = l[10:26]
         f.close()
     except:
-        rpiid = False
-    return rpiid
+        id = False
+    return id
     
 def start():
     GPIO.setmode(GPIO.BCM)

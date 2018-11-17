@@ -10,19 +10,21 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
     ), "attini/transmission.py")
     result = 0
     try:
-        data = {
-            "rpiid" : gpio.get_rpiid(),
-            "air_humidity" : air_humidity,
-            "air_temperature" : air_temperature,
-            "soil_moisture" : soil_moisture
-        }
-        files = {
-            "photo_bin" : ("0" if photo_bin == False else photo_bin)
-        }
+        #files = {
+        #    "photo_bin" : ("0" if photo_bin == False else photo_bin)
+        #}
         response = requests.post(\
             "http://" + util.get_config('server_ip') + ":" + str(util.get_config('server_port')),\
-            data = data,\
-            files = files,\
+            data = json.dumps({
+                "id" : gpio.get_id(),\
+                "air_humidity" : air_humidity,\
+                "air_temperature" : air_temperature,\
+                "soil_moisture" : soil_moisture\
+            }),\
+            headers = {\
+                "content-type" : "application/json"\
+            },\
+            #files = files,\
             timeout = 10\
         )
         util.log("HTTP response status code {0}".format(str(response.status_code)), "attini/transmission.py")
