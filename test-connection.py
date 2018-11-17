@@ -34,7 +34,6 @@ if __name__ == '__main__':
                     soil_moisture,
                     photo_bin
                 )
-                util.log("result: ".format(str(result)), "test-connection.py", "debug")
                 if int(result["code"]) == 0:
                     util.log("Everything works fine. Server response: {0} - {1}".format(result["code"], result["message"]), "test-connection.py", "debug")
                 else:
