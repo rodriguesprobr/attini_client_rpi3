@@ -32,11 +32,10 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
         if response.status_code == requests.codes.ok:
             util.log("Data sent.")
             try:
-                rcvd_data = '{' + response.text.split('{',1)[0]
-                util.log("Received data: {0}".format(str(rcvd_data)), "attini/transmission.py")
-                result = rcvd_data
+                result = json.loads('{' + response.text.split('{', 1)[1])
+                util.log("Received data: {0}".format(str(result)), "attini/transmission.py")
             except:
-                result = -99
+                result = "{\"code\":\"-99\", \"message\":\"Error parsing the data received from attini server. Data: {0}\"}".format(str(response.text))
         else:
             util.log("Error sending data to server.", "attini/transmission.py")
         return result

@@ -45,25 +45,17 @@ if __name__ == '__main__':
                     gpio.blink(util.get_config("red_led_port"), 3, 0.125)
                     gpio.light(util.get_config("green_led_port"), 1)
                 
-                send_status = transmission.send(
+                result = transmission.send(
                     air_humidity,
                     air_temperature,
                     soil_moisture,
                     photo_bin
                 )
-                if send_status == 0:
+                if int(result["code"]) == 0:
                     gpio.blink(util.get_config("green_led_port"), 5, 0.125)
-                elif send_status < 0:
+                elif int(result["code"]) < 0:
                     gpio.light(util.get_config("green_led_port"), 0)
-                    gpio.blink(util.get_config("red_led_port"), 4, 0.125)
-                    gpio.light(util.get_config("green_led_port"), 1)
-                elif send_status == 1:
-                    gpio.light(util.get_config("green_led_port"), 0)
-                    gpio.blink(util.get_config("red_led_port"), 5, 0.125)
-                    gpio.light(util.get_config("green_led_port"), 1)
-                elif send_status == 2:
-                    gpio.light(util.get_config("green_led_port"), 0)
-                    gpio.blink(util.get_config("red_led_port"), 6, 0.125)
+                    gpio.blink(util.get_config("red_led_port"), (int(result["code"]) * -1), 0.125)
                     gpio.light(util.get_config("green_led_port"), 1)
                 
                 gpio.light(util.get_config("green_led_port"), 0)
