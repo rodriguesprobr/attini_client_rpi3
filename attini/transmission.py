@@ -1,6 +1,7 @@
 from attini import gpio
 from attini import util
 
+import json
 import requests
 
 def send(air_humidity, air_temperature, soil_moisture, photo_bin):
