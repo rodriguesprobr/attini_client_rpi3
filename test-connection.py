@@ -19,10 +19,10 @@ if __name__ == '__main__':
                 util.log("Fatal Error: Attini server is offline.", "test-connection.py", "debug")
             else:
                 util.log("OK", "test-connection.py", "debug")
-                air_humidity = 30.5
-                air_temperature = 30.5
-                soil_moisture = True
-                photo_bin = False
+                air_humidity = -99.9
+                air_temperature = -99.9
+                soil_moisture = -99.9
+                photo_bin = 0
                 
                 util.log("Capturing photo from the USB Webcam.", "test-connection.py", "debug")
                 photo_bin = gpio.read("CameraUSB", "")
