@@ -28,20 +28,21 @@ if __name__ == '__main__':
                 photo_bin = gpio.read("CameraUSB", "")
 
                 util.log("Transmitting data...", "test-connection.py", "debug")
-                send_status = transmission.send(
+                rvcd_data = transmission.send(
                     air_humidity,
                     air_temperature,
                     soil_moisture,
                     photo_bin
                 )
-                if send_status == 0:
-                    util.log("send_status == 0 -> Everything works fine.", "test-connection.py", "debug")
-                elif send_status == -2:
-                    util.log("send_status == -2 -> Everything works fine, but the photo was not transmitted . Error: {0}".format(str(send_status)), "test-connection.py", "debug")
-                elif send_status == -30:
-                    util.log("send_status == {0} -> Connection Error (Client is offline or Server is down). Error: {0}".format(str(send_status)), "test-connection.py", "debug")
+                util.log("rvcd_data: ".format(str(rvcd_data)), "test-connection.py", "debug")
+                if rvcd_data == 0:
+                    util.log("rvcd_data == 0 -> Everything works fine.", "test-connection.py", "debug")
+                elif rvcd_data == -2:
+                    util.log("rvcd_data == -2 -> Everything works fine, but the photo was not transmitted . Error: {0}".format(str(rvcd_data)), "test-connection.py", "debug")
+                elif rvcd_data == -30:
+                    util.log("rvcd_data == {0} -> Connection Error (Client is offline or Server is down). Error: {0}".format(str(rvcd_data)), "test-connection.py", "debug")
                 else:
-                    util.log("send_status == {0} -> Error: {0}".format(str(send_status)), "test-connection.py", "debug")
+                    util.log("rvcd_data == {0} -> Error: {0}".format(str(rvcd_data)), "test-connection.py", "debug")
     except KeyboardInterrupt:
         sys.exit()
     except Exception as e:
