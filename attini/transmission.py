@@ -23,23 +23,22 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
             headers = {\
                 "content-type" : "application/json"\
             },\
-            #files = files,\
             timeout = 10\
         )
         util.log("HTTP response status code {0}".format(str(response.status_code)), "attini/transmission.py")
         if response.status_code == requests.codes.ok:
             util.log("Data sent.")
             try:
-                result = json.loads('{' + response.text.split('{', 1)[1])
+                result = '{' + response.text.split('{', 1)[1]
                 util.log("Received data: {0}".format(str(result)), "attini/transmission.py")
             except:
                 result = "{\"code\":\"-12\", \"message\":\"Error parsing the data received from attini server. Data: {0}\"}".format(str(response.text))
         else:
             util.log("Error sending data to server.", "attini/transmission.py")
-        return result
+        return json.loads(result)
     except requests.exceptions.ReadTimeout:
         util.log("Error sending data to server. Connection timeout.", "attini/transmission.py")
-        return "{\"code\":\"-11\", \"message\":\"Error sending data to server. Connection timeout.\"}"
+        return json.loads("{\"code\":\"-11\", \"message\":\"Error sending data to server. Connection timeout.\"}")
     except (requests.exceptions.ConnectionError):
         util.log("Error sending data to server. Connection error.", "attini/transmission.py")
-        return "{\"code\":\"-10\", \"message\":\"Error sending data to server. Connection error.\"}"
+        return json.loads("{\"code\":\"-10\", \"message\":\"Error sending data to server. Connection error.\"}")
