@@ -24,8 +24,11 @@ if __name__ == '__main__':
                 soil_moisture = -99.9
                 photo_bin = 0
                 
-                util.log("Capturing photo from the USB Webcam.", "test-connection.py", "debug")
-                photo_bin = gpio.read("CameraUSB", "")
+                #util.log("Capturing photo from the USB Webcam.", "test-connection.py", "debug")
+                #photo_bin = gpio.read("CameraUSB", "")
+                img_path = "{0}/temp.jpg".format(util.get_config("photo_temp_path"))
+                with open(img_path, "rb") as photo_file:
+                    photo_bin = base64.b64encode(photo_file.read())
 
                 util.log("Transmitting data...", "test-connection.py", "debug")
                 result = transmission.send(
