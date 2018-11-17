@@ -20,7 +20,8 @@ def send(air_humidity, air_temperature, soil_moisture, photo_bin):
                 "id" : gpio.get_id(),\
                 "air_humidity" : air_humidity,\
                 "air_temperature" : air_temperature,\
-                "soil_moisture" : soil_moisture\
+                "soil_moisture" : soil_moisture,\
+                "photo_bin" : photo_bin\
             }),\
             headers = {\
                 "content-type" : "application/json"\
